@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "31e114ec-e069-44cf-8f88-423ee2b3ecd0"
+				"spark.autotune.trackingId": "fce19fdf-ccae-4774-b43d-f603a8dc71a3"
 			}
 		},
 		"metadata": {
@@ -31,10 +31,10 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/e135daea-2ce5-478e-b124-d905e0e2b541/resourceGroups/synapse_poc/providers/Microsoft.Synapse/workspaces/robinqc6llws66v666pocws1/bigDataPools/ws1sparkpool1",
+				"id": "/subscriptions/e135daea-2ce5-478e-b124-d905e0e2b541/resourceGroups/synapsepoc/providers/Microsoft.Synapse/workspaces/agrdgay552y3rowepocws1/bigDataPools/ws1sparkpool1",
 				"name": "ws1sparkpool1",
 				"type": "Spark",
-				"endpoint": "https://robinqc6llws66v666pocws1.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/ws1sparkpool1",
+				"endpoint": "https://agrdgay552y3rowepocws1.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/ws1sparkpool1",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
@@ -79,7 +79,7 @@
 					"from pyspark.mllib.evaluation import BinaryClassificationMetrics\n",
 					"from pyspark.ml.evaluation import BinaryClassificationEvaluator"
 				],
-				"execution_count": 20
+				"execution_count": 10
 			},
 			{
 				"cell_type": "markdown",
@@ -104,7 +104,7 @@
 					"nyc_tlc = NycTlcYellow(start_date=start_date, end_date=end_date)\n",
 					"nyc_tlc_df = nyc_tlc.to_spark_dataframe()"
 				],
-				"execution_count": 21
+				"execution_count": 11
 			},
 			{
 				"cell_type": "code",
@@ -112,7 +112,7 @@
 					"#To make development easier, faster and less expensive downsample for now\n",
 					"sampled_taxi_df = nyc_tlc_df.sample(True, 0.001, seed=1234)"
 				],
-				"execution_count": 22
+				"execution_count": 12
 			},
 			{
 				"cell_type": "markdown",
@@ -153,7 +153,7 @@
 					"plt.suptitle('')\n",
 					"plt.show()"
 				],
-				"execution_count": 23
+				"execution_count": 13
 			},
 			{
 				"cell_type": "markdown",
@@ -185,7 +185,7 @@
 					"                                & (sampled_taxi_df.paymentType.isin({\"1\", \"2\"}))\n",
 					"                                )"
 				],
-				"execution_count": 24
+				"execution_count": 14
 			},
 			{
 				"cell_type": "markdown",
@@ -211,7 +211,7 @@
 					"                                              )\\\n",
 					"                                       .filter((taxi_df.tripTimeSecs >= 30) & (taxi_df.tripTimeSecs <= 7200))"
 				],
-				"execution_count": 25
+				"execution_count": 15
 			},
 			{
 				"cell_type": "markdown",
@@ -238,7 +238,7 @@
 					"# Create a new dataframe that has had the encodings applied\n",
 					"encoded_final_df = Pipeline(stages=[sI1, en1, sI2, en2]).fit(taxi_featurised_df).transform(taxi_featurised_df)"
 				],
-				"execution_count": 26
+				"execution_count": 16
 			},
 			{
 				"cell_type": "markdown",
@@ -259,7 +259,7 @@
 					"# Split the dataframe into test and training dataframes\n",
 					"train_data_df, test_data_df = encoded_final_df.randomSplit([trainingFraction, testingFraction], seed=seed)"
 				],
-				"execution_count": 27
+				"execution_count": 17
 			},
 			{
 				"cell_type": "markdown",
@@ -285,7 +285,7 @@
 					"datestamp = datetime.now().strftime('%m-%d-%Y-%s');\n",
 					"fileName = \"lrModel_\" + datestamp;\n",
 					"logRegDirfilename = fileName;\n",
-					"lrModel.save(logRegDirfilename)\n",
+					"#lrModel.save(logRegDirfilename)\n",
 					"\n",
 					"## Predict tip 1/0 (yes/no) on the test dataset, evaluation using AUROC\n",
 					"predictions = lrModel.transform(test_data_df)\n",
@@ -293,7 +293,7 @@
 					"metrics = BinaryClassificationMetrics(predictionAndLabels)\n",
 					"print(\"Area under ROC = %s\" % metrics.areaUnderROC)"
 				],
-				"execution_count": 29
+				"execution_count": 19
 			},
 			{
 				"cell_type": "markdown",
@@ -317,7 +317,7 @@
 					"plt.ylabel('True Positive Rate')\n",
 					"plt.show()"
 				],
-				"execution_count": 30
+				"execution_count": null
 			}
 		]
 	}

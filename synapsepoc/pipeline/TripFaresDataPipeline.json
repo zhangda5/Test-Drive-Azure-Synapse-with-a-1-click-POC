@@ -481,7 +481,7 @@
 			},
 			"datalakeAccountName": {
 				"type": "string",
-				"defaultValue": "dlsagrpocfs1"
+				"defaultValue": "agrdgay552y3rowepoc"
 			}
 		},
 		"folder": {

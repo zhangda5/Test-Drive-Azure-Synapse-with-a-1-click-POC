@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "4ef30e56-1e09-4dc8-9ea5-56f865413287"
+				"spark.autotune.trackingId": "bacc675f-1769-4d1c-ac63-3aec38b4d179"
 			}
 		},
 		"metadata": {
@@ -51,11 +51,14 @@
 			{
 				"cell_type": "code",
 				"source": [
-					"df = spark.read.load(\"example/raw/folder/subfolder/somefile.csv\", \r\n",
+					"path = \"abfs[s]://demo@adfdemo2023.dfs.windows.cor.net/bronze/\"+\"local_file_name\"\r\n",
+					"\r\n",
+					"\r\n",
+					"df = spark.read.load(path, \r\n",
 					"format=\"csv\", sep=\";\", inferSchema=\"true\", header=\"true\")\r\n",
 					""
 				],
-				"execution_count": 1
+				"execution_count": 3
 			}
 		]
 	}

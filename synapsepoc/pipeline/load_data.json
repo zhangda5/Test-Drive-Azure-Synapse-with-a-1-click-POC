@@ -46,7 +46,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "demo",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					}
 				],
